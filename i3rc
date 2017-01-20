@@ -1,0 +1,10 @@
+#!/bin/sh
+
+synclient VertScrollDelta=-109
+nitrogen --restore&
+xcompmgr&
+cinnamon-settings-daemon&
+export SUDO_ASKPASS="$HOME/Programs/git-repos/dotfiles-2017/authentication.sh"
+$HOME/.config/i3/blank.sh|lemonbar -B#00000000 -g 1920x9+0+0&
+$HOME/.config/i3/bar.sh|lemonbar -B#ffffffff -g 1920x21+0+0 -F#000000 -f "Hack-11" -f "mono-10" -f "mono-1" -f "FontAwesome-11" -u 1|bash&
+terminator&

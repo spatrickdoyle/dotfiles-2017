@@ -1,0 +1,52 @@
+#!/bin/sh
+
+bn=$((100*$(cat /sys/class/backlight/intel_backlight/brightness)/$(cat /sys/class/backlight/intel_backlight/max_brightness)))
+bn=${bn%%.*}
+if [ $bn -gt 99 ]
+then
+	echo "%{+u +o}━━━━━━━━━━━━━━%{+u +o}"
+elif [ $bn -gt 91 ]
+then
+	echo "%{+u +o}━━━━━━━━━━━━━%{+u +o}%{F#777777}━%{F#ffffff}"
+elif [ $bn -gt 83 ]
+then
+	echo "%{+u +o}━━━━━━━━━━━━%{+u +o}%{F#777777}━━%{F#ffffff}"
+elif [ $bn -gt 75 ]
+then
+	echo "%{+u +o}━━━━━━━━━━━%{+u +o}%{F#777777}━━━%{F#ffffff}"
+elif [ $bn -gt 67 ]
+then
+	echo "%{+u +o}━━━━━━━━━━%{+u +o}%{F#777777}━━━━%{F#ffffff}"
+elif [ $bn -gt 59 ]
+then
+	echo "%{+u +o}━━━━━━━━━%{+u +o}%{F#777777}━━━━━%{F#ffffff}"
+elif [ $bn -gt 51 ]
+then
+	echo "%{+u +o}━━━━━━━━%{+u +o}%{F#777777}━━━━━━%{F#ffffff}"
+elif [ $bn -gt 43 ]
+then
+	echo "%{+u +o}━━━━━━━%{+u +o}%{F#777777}━━━━━━━%{F#ffffff}"
+elif [ $bn -gt 35 ]
+then
+	echo "%{+u +o}━━━━━━%{+u +o}%{F#777777}━━━━━━━━%{F#ffffff}"
+elif [ $bn -gt 27 ]
+then
+	echo "%{+u +o}━━━━━%{+u +o}%{F#777777}━━━━━━━━━%{F#ffffff}"
+elif [ $bn -gt 19 ]
+then
+	echo "%{+u +o}━━━━%{+u +o}%{F#777777}━━━━━━━━━━%{F#ffffff}"
+elif [ $bn -gt 11 ]
+then
+	echo "%{+u +o}━━━%{+u +o}%{F#777777}━━━━━━━━━━━%{F#ffffff}"
+elif [ $bn -gt 3 ]
+then
+	echo "%{+u +o}━━%{+u +o}%{F#777777}━━━━━━━━━━━━%{F#ffffff}"
+else
+	# if [ $bn -eq 0 ]
+	# then
+		# echo "%{+u +o}%{-u -o}%{+u +o}%{-u -o}%{F#777777}━━━━━━━━━━━━━━"
+	# else
+	echo "%{+u +o}━%{+u +o}%{F#777777}━━━━━━━━━━━━━%{F#ffffff}"
+	# fi
+fi
+#echo "%{+u +o}"

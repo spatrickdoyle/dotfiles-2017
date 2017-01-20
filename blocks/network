@@ -1,0 +1,30 @@
+#!/bin/sh
+
+text=''
+
+for INTERFACE in $(ls /sys/class/net/); do
+    state="$(cat /sys/class/net/$INTERFACE/operstate)"
+    if [ "$state" = "up" ]; then
+        #ipaddr="$(ip addr show $INTERFACE | perl -n -e'/inet (.+)\// && print $1')"
+        #ipaddr="${ipaddr:- -}"
+		iwid="$(iwgetid -r)"
+
+		if [ "$INTERFACE" = "wlo1" ]; then
+			text=" $text | $iwid" # $ipaddr"
+		else
+			text=" $text | wired" # $ipaddr"
+		fi
+    fi
+done
+
+if [ -n "$text" ]; then
+    text=$(echo $text | sed "s/^| //")
+	#if ping -c 1 8.8.8.8 > /dev/null; then
+	#	echo -e "%{F#ffffff}\uf1eb "$text #color if connected
+	#else
+	#	echo -e "\uf1eb %{F#ff0000}"$text"%{F#ffffff}" #color if not connected
+	#fi
+	echo -e "%{F#ffffff}\uf1eb "$text #color if connected
+else
+    echo -e "%{F#ff0000}\uf071 Disconnected%{F#ffffff}"
+fi

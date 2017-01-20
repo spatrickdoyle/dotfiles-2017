@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+declare -i volume
+volume=$(amixer sget 'Master'|grep -m 1 "\["|sed "s/.*[0-9]\+ \[//; s/%\].*//")
+
+echo -n $volume"%"
+
+if [ $volume -lt 100 ]; then
+   echo -n "........."
+fi
+if [ $volume -lt 10 ]; then
+   echo -n "........."
+fi
